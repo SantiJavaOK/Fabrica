@@ -7,8 +7,9 @@ public class OpcionalTest {
 		
 		Opcional opc = new Opcional();
 		
-		opc.setDescripcion("Sistemas de Frenos ABS ");
-		opc.setPrecio(14000.00);
+		opc.setDescripcion("Llantas de aleación");
+		opc.setPrecio(12000.00);
+		opc.setAlias("LL");
 
 		ControllerOpcional opcCtrl = new ControllerOpcional();
 		

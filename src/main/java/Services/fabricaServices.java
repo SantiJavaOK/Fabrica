@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -45,7 +46,7 @@ public class fabricaServices {
 		
 	}
 	
-	@GET
+	@POST
 	@Path("/AltaAutomovil/{Modelo}/{Precio}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response AltaAutomovil(@PathParam("Modelo") String Modelo,
@@ -53,10 +54,46 @@ public class fabricaServices {
 		
 		ControllerAuto ctrAuto = new ControllerAuto();
 			
-		Automovil auto = new Automovil(Modelo, precio);
-		ctrAuto.AltaAutomovil(auto);
+		ctrAuto.AltaAutomovil(new Automovil(Modelo, precio));
 		
 		return null;
+		
+	}
+	
+	@POST
+	@Path("/EliminarAutomovil/{IdAuto}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response AltaAutomovil(@PathParam("IdAuto") Integer IdAutomovil) {
+		
+		ControllerAuto ctrAuto = new ControllerAuto();
+			
+		if(!ctrAuto.eliminarAutomovil(IdAutomovil)) {
+			return Response.status(Response.Status.NOT_FOUND).entity("No existe Automovil con Id: " + IdAutomovil).build();
+		};
+		
+		return Response.ok().build();
+		
+	}
+	
+	@POST
+	@Path("/ModificarAutomovil/{IdAuto}/{Modelo}/{Precio}/")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Response AltaAutomovil(@PathParam("IdAuto") Integer IdAutomovil,
+								  @PathParam("Modelo") String Modelo,
+								  @PathParam("Precio") Double precio) {
+		
+		ControllerAuto ctrAuto = new ControllerAuto();
+			
+		Automovil auto = new Automovil();
+		auto.setIdAutomovil(IdAutomovil);
+		auto.setModelo(Modelo);
+		auto.setPrecio(precio);
+		
+		if(!ctrAuto.modificarAutomovil(auto)) {
+			return Response.status(Response.Status.NOT_FOUND).entity("No existe Automovil con Id: " + IdAutomovil).build();
+		};
+		
+		return Response.ok().build();
 		
 	}
 	

@@ -30,6 +30,8 @@ public class Opcional {
 	@Column(name="Precio")
 	private double Precio;
 	
+	@Column(name="Alias")
+	private String Alias;
 		
 	@OneToMany(mappedBy = "Opcionales", fetch = FetchType.LAZY)
 	private List<VentaDetalle> VentaOpcional;
@@ -38,10 +40,18 @@ public class Opcional {
 		
 	}
 	
-	public Opcional(String descripcion, double precio) {
+
+
+	public Opcional(Integer idOpcional, String descripcion, double precio, String alias,
+			List<VentaDetalle> ventaOpcional) {
+		IdOpcional = idOpcional;
 		Descripcion = descripcion;
 		Precio = precio;
-	}	
+		Alias = alias;
+		VentaOpcional = ventaOpcional;
+	}
+
+
 
 	public Integer getIdOpcional() {
 		return IdOpcional;
@@ -73,6 +83,14 @@ public class Opcional {
 
 	public void setVentaOpcional(List<VentaDetalle> ventaOpcional) {
 		VentaOpcional = ventaOpcional;
+	}
+
+	public String getAlias() {
+		return Alias;
+	}
+
+	public void setAlias(String alias) {
+		Alias = alias;
 	}
 
 
