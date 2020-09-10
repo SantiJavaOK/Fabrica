@@ -66,6 +66,11 @@
 			<artifactId>genson</artifactId>
 			<version>0.99</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>2.1</version>
+		</dependency>
 
 	</dependencies>
 

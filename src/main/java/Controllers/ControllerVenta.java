@@ -111,5 +111,14 @@ public class ControllerVenta {
 		return listaSalida;
 	}
 	
+	/* ------------------------------------------ */
+	/* --        INFORM  VENTAS                -- */
+	/* ------------------------------------------ */
+	@SuppressWarnings("unchecked")
+	public static List<Venta> informeVentas() {
+		emf = Persistence.createEntityManagerFactory("PersistenciaBD"); 
+		manager = emf.createEntityManager();
+		
+		
 
 }
